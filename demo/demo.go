@@ -1,0 +1,45 @@
+package main
+
+import (
+	"fmt"
+
+	"github.com/huaweicloud/huaweicloud-sdk-go-frs/client/param"
+	"github.com/huaweicloud/huaweicloud-sdk-go-frs/client/service"
+)
+
+func main() {
+	//Init frs client
+	endpoint := "https://face.cn-north-1.myhuaweicloud.com"
+	ak := "ak"
+	sk := "sk"
+	projectId := "project id"
+	authInfo := &param.AuthInfo{EndPoint: endpoint, Ak: ak, Sk: sk}
+	frs := service.NewFrsClient(authInfo, projectId)
+
+	//Get all service
+	frs.GetCompareService()
+	frs.GetDetectService()
+	frs.GetFaceService()
+	frs.GetFaceSetService()
+	frs.GetLiveDetectService()
+	frs.GetQualityService()
+	frs.GetSearchService()
+
+	//Use frs compare service
+	res, err := frs.GetCompareService().CompareFaceByFile("image1", "image2")
+	if nil != err {
+		fmt.Println(err)
+	} else {
+		fmt.Println(res.Similarity)
+		fmt.Println(res.Image1Face.BoundingBox)
+		fmt.Println(res.Image2Face.BoundingBox)
+	}
+
+	//Use frs detect service
+	res2, err := frs.GetDetectService().DetectFaceByBase64("base64")
+	if nil != err {
+		fmt.Println(err)
+	} else {
+		fmt.Println(res2)
+	}
+}

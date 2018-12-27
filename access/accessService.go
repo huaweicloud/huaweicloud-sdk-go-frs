@@ -60,8 +60,8 @@ func (accessService *AccessService) Put(url string, body string) (*http.Response
 	return response, err
 }
 
-func (accessService *AccessService) Delete(url string) (*http.Response, error) {
-	request, err := http.NewRequest("DELETE", accessService.authInfo.EndPoint+url, nil)
+func (accessService *AccessService) Delete(url string, body string) (*http.Response, error) {
+	request, err := http.NewRequest("DELETE", accessService.authInfo.EndPoint+url, strings.NewReader(body))
 	if nil != err {
 		return nil, err
 	}

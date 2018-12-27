@@ -69,7 +69,7 @@ func (faceSetService *FaceSetService) GetFaceSet(faceSetName string) (*result.Ge
 
 func (faceSetService *FaceSetService) DeleteFaceSet(faceSetName string) (*result.DeleteFaceSetResult, error) {
 	uri := fmt.Sprintf(_FACE_SET_DELETE_URI, faceSetService.projectId, faceSetName)
-	response, err := faceSetService.accessService.Delete(uri)
+	response, err := faceSetService.accessService.Delete(uri, "")
 	if nil != err {
 		return nil, err
 	}

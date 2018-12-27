@@ -16,6 +16,7 @@ const (
 	_FACE_DELETE_BY_EXT_ID_URI   = "/v1/%s/face-sets/%s/faces?external_image_id=%s"
 	_FACE_DELETE_BY_FACE_ID_URI  = "/v1/%s/face-sets/%s/faces?face_id=%s"
 	_FACE_DELETE_BY_FIELD_ID_URI = "/v1/%s/face-sets/%s/faces?%s=%s"
+	_FACE_DELETE_BY_FILTER       = "/v1/%s/face-sets/%s/faces/batch"
 	_FACE_SET_CREATE_URI         = "/v1/%s/face-sets"
 	_FACE_SET_GET_ALL_URI        = "/v1/%s/face-sets"
 	_FACE_SET_GET_ONE_URI        = "/v1/%s/face-sets/%s"

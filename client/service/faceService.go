@@ -159,7 +159,7 @@ func (faceService *FaceService) GetFace(faceSetName string, faceId string) (*res
 
 func (faceService *FaceService) DeleteFaceByFaceId(faceSetName string, faceId string) (*result.DeleteFaceResult, error) {
 	uri := fmt.Sprintf(_FACE_DELETE_BY_FACE_ID_URI, faceService.projectId, faceSetName, faceId)
-	response, err := faceService.accessService.Delete(uri)
+	response, err := faceService.accessService.Delete(uri, "")
 	if nil != err {
 		return nil, err
 	}
@@ -170,7 +170,7 @@ func (faceService *FaceService) DeleteFaceByFaceId(faceSetName string, faceId st
 
 func (faceService *FaceService) DeleteFaceByExternalImageId(faceSetName string, externalImageId string) (*result.DeleteFaceResult, error) {
 	uri := fmt.Sprintf(_FACE_DELETE_BY_EXT_ID_URI, faceService.projectId, faceSetName, externalImageId)
-	response, err := faceService.accessService.Delete(uri)
+	response, err := faceService.accessService.Delete(uri, "")
 	if nil != err {
 		return nil, err
 	}
@@ -181,7 +181,18 @@ func (faceService *FaceService) DeleteFaceByExternalImageId(faceSetName string, 
 
 func (faceService *FaceService) DeleteFaceByFieldId(faceSetName string, fieldId string, fieldValue string) (*result.DeleteFaceResult, error) {
 	uri := fmt.Sprintf(_FACE_DELETE_BY_FIELD_ID_URI, faceService.projectId, faceSetName, fieldId, fieldValue)
-	response, err := faceService.accessService.Delete(uri)
+	response, err := faceService.accessService.Delete(uri, "")
+	if nil != err {
+		return nil, err
+	}
+	deleteFaceResult := &result.DeleteFaceResult{}
+	err = common.ResponseToObj(response, deleteFaceResult)
+	return deleteFaceResult, err
+}
+
+func (faceService *FaceService) DeleteFaceByFilter(faceSetName string, filter string) (*result.DeleteFaceResult, error) {
+	uri := fmt.Sprintf(_FACE_DELETE_BY_FILTER, faceService.projectId, faceSetName)
+	response, err := faceService.accessService.Delete(uri, fmt.Sprintf("{\"filter\":\"%s\"}", filter))
 	if nil != err {
 		return nil, err
 	}

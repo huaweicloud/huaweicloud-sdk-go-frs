@@ -3,6 +3,7 @@ package service
 import (
 	"github.com/huaweicloud/huaweicloud-sdk-go-frs/access"
 	"github.com/huaweicloud/huaweicloud-sdk-go-frs/client/param"
+	"github.com/huaweicloud/huaweicloud-sdk-go-frs/client/service/v2"
 )
 
 type FrsClient struct {
@@ -13,6 +14,8 @@ type FrsClient struct {
 	liveDetectService *LiveDetectService
 	qualityService    *QualityService
 	searchService     *SearchService
+
+	apiCollectionV2 *v2.ApiCollectionV2
 }
 
 func NewFrsClient(authInfo *param.AuthInfo, projectId string) *FrsClient {
@@ -37,6 +40,8 @@ func (frsClient *FrsClient) initService(accessService *access.AccessService, pro
 	frsClient.liveDetectService = newLiveDetectService(accessService, projectId)
 	frsClient.qualityService = newQualityService(accessService, projectId)
 	frsClient.searchService = newSearchService(accessService, projectId)
+
+	frsClient.apiCollectionV2 = v2.NewApiCollectionV2(accessService, projectId)
 }
 
 func (frsClient *FrsClient) GetCompareService() *CompareService {
@@ -65,4 +70,8 @@ func (frsClient *FrsClient) GetQualityService() *QualityService {
 
 func (frsClient *FrsClient) GetSearchService() *SearchService {
 	return frsClient.searchService
+}
+
+func (frsClient *FrsClient) GetV2() *v2.ApiCollectionV2 {
+	return frsClient.apiCollectionV2
 }

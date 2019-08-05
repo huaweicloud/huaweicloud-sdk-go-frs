@@ -66,7 +66,7 @@ func (compareService *CompareService) CompareFaceByFile(image1Path string, image
 	if nil != formFile2Err {
 		return nil, formFile2Err
 	}
-	file2, file2Err := os.Open(image1Path)
+	file2, file2Err := os.Open(image2Path)
 	if nil != file2Err {
 		return nil, file2Err
 	}

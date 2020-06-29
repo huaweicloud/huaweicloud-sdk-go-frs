@@ -32,3 +32,7 @@ func (createExternalFields *CreateExternalFields) GetString() string {
 	}
 	return string(data)
 }
+
+func (createExternalFields *CreateExternalFields) GetValue() map[string]map[string]string {
+	return createExternalFields.prop
+}

@@ -23,3 +23,7 @@ func (addExternalFields *AddExternalFields) GetString() string {
 	}
 	return string(data)
 }
+
+func (addExternalFields *AddExternalFields) GetValue() map[string]interface{} {
+	return addExternalFields.prop
+}

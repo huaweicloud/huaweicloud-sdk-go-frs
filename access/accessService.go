@@ -18,14 +18,15 @@ func NewAccessServiceWithProxy(authInfo *param.AuthInfo, proxyHostInfo *param.Pr
 	proxy := func(_ *http.Request) (*url.URL, error) {
 		return url.Parse(proxyHostInfo.Proxy)
 	}
-	transport := &http.Transport{Proxy: proxy}
+	transport := &http.Transport{Proxy: proxy, TLSClientConfig: &tls.Config{InsecureSkipVerify: true}}
 	httpClient := &http.Client{Transport: transport}
 	accessService := &AccessService{authInfo: authInfo, httpClient: httpClient}
 	return accessService
 }
 
 func NewAccessService(authInfo *param.AuthInfo) *AccessService {
-	httpClient := &http.Client{}
+	transport := &http.Transport{TLSClientConfig: &tls.Config{InsecureSkipVerify: true}}
+	httpClient := &http.Client{Transport: transport}
 	accessService := &AccessService{authInfo: authInfo, httpClient: httpClient}
 	return accessService
 }

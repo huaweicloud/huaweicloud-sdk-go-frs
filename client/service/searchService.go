@@ -48,11 +48,11 @@ func (searchService *SearchService) searchFace(faceSetName string, image string,
 	}
 	//search sort
 	if nil != searchSort {
-		jsonObj.Put("sort", searchSort.GetString())
+		jsonObj.Put("sort", searchSort.GetValue())
 	}
 	//search return fields
 	if nil != searchReturnFields {
-		jsonObj.Put("return_fields", searchReturnFields.GetString())
+		jsonObj.Put("return_fields", searchReturnFields.GetValue())
 	}
 	//filter
 	if "" != filter {

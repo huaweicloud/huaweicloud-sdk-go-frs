@@ -37,7 +37,7 @@ func (faceService *FaceService) addFace(faceSetName string, externalImageId stri
 		jsonObj.Put("external_image_id", externalImageId)
 	}
 	if nil != addExternalFields {
-		jsonObj.Put("external_fields", addExternalFields.GetString())
+		jsonObj.Put("external_fields", addExternalFields.GetValue())
 	}
 	response, err := faceService.accessService.Post(uri, map[string]string{}, jsonObj.GetString())
 	if nil != err {

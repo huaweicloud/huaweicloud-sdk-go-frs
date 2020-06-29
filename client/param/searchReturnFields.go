@@ -23,3 +23,7 @@ func (searchReturnFields *SearchReturnFields) GetString() string {
 	}
 	return string(data)
 }
+
+func (searchReturnFields *SearchReturnFields) GetValue() []string {
+	return searchReturnFields.prop
+}

@@ -26,7 +26,7 @@ func (faceSetService *FaceSetServiceV2) CreateFaceSetWithExtFields(faceSetName s
 		jsonObj.Put("face_set_capacity", faceSetCapacity)
 	}
 	if nil != createExtrnalFields {
-		jsonObj.Put("external_fields", createExtrnalFields.GetString())
+		jsonObj.Put("external_fields", createExtrnalFields.GetValue())
 	}
 	response, err := faceSetService.accessService.Post(uri, map[string]string{}, jsonObj.GetString())
 	if nil != err {

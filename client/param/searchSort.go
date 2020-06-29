@@ -30,3 +30,7 @@ func (searchSort *SearchSort) GetString() string {
 	}
 	return string(data)
 }
+
+func (searchSort *SearchSort) GetValue() []map[string]string {
+	return searchSort.prop
+}

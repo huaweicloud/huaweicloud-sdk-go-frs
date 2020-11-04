@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"crypto/tls"
 
 	"github.com/huaweicloud/huaweicloud-sdk-go-frs/client/param"
 )
